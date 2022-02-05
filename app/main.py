@@ -1,8 +1,10 @@
+from sys import prefix
 from fastapi import FastAPI
 import uvicorn
 from fastapi.exception_handlers import http_exception_handler
+from routers import continent, country, city
 from models import sql_models
-from routers import crud, health
+from routers import health
 from database import mysql
 
 description = """
@@ -18,9 +20,13 @@ lorem ipsum **lorem ipsum lorem ipsum lorem ipsum **.
 """
 author = "Shubham Ahinave"
 all_tags_metadata = list()
-all_tags_metadata.extend(crud.tags_metadata)
 all_tags_metadata.extend(health.tags_metadata)
+all_tags_metadata.extend(continent.tags_metadata)
+all_tags_metadata.extend(country.tags_metadata)
+all_tags_metadata.extend(city.tags_metadata)
+
 app = FastAPI( title="Wiki API",
+    prefix="wiki",
     description=description,
     version="1.0.0",
     contact={
@@ -31,7 +37,9 @@ app = FastAPI( title="Wiki API",
 
 sql_models.Base.metadata.create_all(bind=mysql.engine)
 app.include_router(health.health_route)
-app.include_router(crud.crud_route)
+app.include_router(continent.router)
+app.include_router(country.router)
+app.include_router(city.router)
 
 
     

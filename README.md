@@ -1,4 +1,8 @@
-# Python implementation of sample wikipedia for geographical entities
+# Sample wikipedia application
+
+## Project stack
+- mysql
+- FastAPI service 
 
 ## Database schema
 
@@ -28,6 +32,11 @@ Relationship among this tables are `continents` to `countries` is one to many an
 │   │   ├── configurations.py
 │   │   └── data
 │   │       └── config.ini
+│   ├── crud
+│   │   ├── __init__.py
+│   │   ├── city.py
+│   │   ├── continent.py
+│   │   └── country.py
 │   ├── database
 │   │   ├── __init__.py
 │   │   └── mysql.py
@@ -37,7 +46,9 @@ Relationship among this tables are `continents` to `countries` is one to many an
 │   │   └── sql_models.py
 │   ├── routers
 │   │   ├── __init__.py
-│   │   ├── crud.py
+│   │   ├── city.py
+│   │   ├── continent.py
+│   │   ├── country.py
 │   │   └── health.py
 │   └── schemas
 │       ├── __init__.py
