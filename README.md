@@ -6,7 +6,7 @@
 
 ## Database schema
 
-To store the geographical data, a database schema is created, which inclued `continents, countries & cities` as tables.
+To store the geographical data, a database schema is created, which includes `continents, countries & cities` as tables.
 Relationship among this tables are `continents` to `countries` is one to many and `countries` to `cities` is one to many.
 
 
@@ -57,6 +57,6 @@ Relationship among this tables are `continents` to `countries` is one to many an
 └── requirements.txt
 ```
 
-### Part 1: 
-- design and build database schema
-- implemented basic apis for crusd operations on continents, countries and cities tables.
+### Features: 
+- a perfect project structure for scalability
+- contains basic apis for crud operations on continents, countries and cities tables.
