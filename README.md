@@ -3,6 +3,7 @@
 ## Project stack
 - mysql
 - FastAPI service 
+- celery (RabbitMQ- Broker, MySQL - Backend)
 
 ## Database schema
 
