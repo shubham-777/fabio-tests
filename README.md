@@ -1,4 +1,4 @@
-# Sample wikipedia application
+# Simple wikipedia application
 
 ## Project stack
 - mysql
@@ -28,6 +28,9 @@ Relationship among this tables are `continents` to `countries` is one to many an
 .
 ├── app
 │   ├── __init__.py
+│   ├── celery_worker
+│   │   ├── __init__.py
+│   │   └── crud_worker.py
 │   ├── core
 │   │   ├── configurations.py
 │   │   └── data
@@ -49,7 +52,8 @@ Relationship among this tables are `continents` to `countries` is one to many an
 │   │   ├── city.py
 │   │   ├── continent.py
 │   │   ├── country.py
-│   │   └── health.py
+│   │   ├── health.py
+│   │   └── task_res.py
 │   └── schemas
 │       ├── __init__.py
 │       └── pyd_schemas.py
@@ -60,3 +64,10 @@ Relationship among this tables are `continents` to `countries` is one to many an
 ### Part 1: 
 - design and build database schema
 - implemented basic apis for crusd operations on continents, countries and cities tables.
+
+
+### Part 2: 
+- app configurations can be define in environment
+- added celery_worker module to app with RabbitMQ for message broker and MySQL to store message in backend
+- converted continent api calls to celery task and a new route to get the task result
+- more will be added soon..

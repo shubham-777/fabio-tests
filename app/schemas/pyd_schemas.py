@@ -1,4 +1,5 @@
 from calendar import c
+from typing import List
 from pydantic import BaseModel
 
 
@@ -12,6 +13,10 @@ class Continent(BaseModel):
 
     class Config():
         orm_mode = True
+
+    @classmethod
+    def from_orm_list(cls, llst: List) -> List:
+        return [cls.from_orm(lobj).dict() for lobj in llst]
 
 #==============================
 # country

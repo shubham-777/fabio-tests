@@ -2,7 +2,7 @@ from sys import prefix
 from fastapi import FastAPI
 import uvicorn
 from fastapi.exception_handlers import http_exception_handler
-from routers import continent, country, city
+from routers import continent, country, city, task_res
 from models import sql_models
 from routers import health
 from database import mysql
@@ -24,6 +24,7 @@ all_tags_metadata.extend(health.tags_metadata)
 all_tags_metadata.extend(continent.tags_metadata)
 all_tags_metadata.extend(country.tags_metadata)
 all_tags_metadata.extend(city.tags_metadata)
+all_tags_metadata.extend(task_res.tags_metadata)
 
 app = FastAPI( title="Wiki API",
     prefix="wiki",
@@ -37,6 +38,7 @@ app = FastAPI( title="Wiki API",
 
 sql_models.Base.metadata.create_all(bind=mysql.engine)
 app.include_router(health.health_route)
+app.include_router(task_res.router)
 app.include_router(continent.router)
 app.include_router(country.router)
 app.include_router(city.router)
@@ -60,5 +62,5 @@ app.include_router(city.router)
 
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8001)

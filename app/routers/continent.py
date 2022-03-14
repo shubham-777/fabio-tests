@@ -1,11 +1,7 @@
-import dbm
-from os import name
-from typing import List
-from fastapi import APIRouter, Depends, status
-from sqlalchemy.orm import Session
-from database.mysql import get_db
+from fastapi import APIRouter, status
 from schemas import pyd_schemas
 from crud import continent
+from fastapi.responses import JSONResponse
 
 router = APIRouter(prefix="/continent", tags=["continent"], responses={404: {"description": "Not found"}})
 tags_metadata = [
@@ -20,10 +16,17 @@ tags_metadata = [
 #==============================
 # continent
 #==============================
-@router.get("/get_all",response_model=List[pyd_schemas.Continent])
-def get_all_continents(db: Session = Depends(get_db)):
-    return continent.get_all_continent(db)
+# @router.get("/get_all",)
+# def get_all_continents():
+#     a = continent.get_all_continent()
+#     return "ggreat"
 
-@router.post("/add", status_code=status.HTTP_201_CREATED,response_model=pyd_schemas.Continent)
-async def add_new_continent(request: pyd_schemas.Continent, db: Session = Depends(get_db)):
-    return continent.add_new_continent(request, db)
+@router.get("/get_all",)
+def get_all_continents():
+    task_id = continent.get_all_continent.apply_async()
+    return JSONResponse(status_code=status.HTTP_202_ACCEPTED, content={"task_id": str(task_id)})
+
+@router.post("/add")
+async def add_new_continent(request: pyd_schemas.Continent):
+    task_id = continent.add_new_continent.apply_async(request)
+    return JSONResponse(status_code=status.HTTP_202_ACCEPTED, content={"task_id": str(task_id)})
