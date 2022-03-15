@@ -14,9 +14,9 @@ class Continent(BaseModel):
     class Config():
         orm_mode = True
 
-    @classmethod
-    def from_orm_list(cls, llst: List) -> List:
-        return [cls.from_orm(lobj).dict() for lobj in llst]
+    # @classmethod
+    # def from_orm_list(cls, llst: List) -> List:
+    #     return [cls.from_orm(lobj) for lobj in llst]
 
 #==============================
 # country
@@ -52,6 +52,9 @@ class ShowCountry(BaseModel):
     class Config():
         orm_mode = True
 
+    @classmethod
+    def from_orm_list(cls, llst: List) -> List:
+        return [cls.from_orm(lobj) for lobj in llst]
 #==============================
 # city
 #==============================
@@ -87,3 +90,7 @@ class ShowCity(BaseModel):
 
     class Config():
         orm_mode = True
+
+    @classmethod
+    def from_orm_list(cls, llst: List) -> List:
+        return [cls.from_orm(lobj) for lobj in llst]

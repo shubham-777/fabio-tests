@@ -1,5 +1,5 @@
 from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, String, UniqueConstraint
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, validates
 from database.mysql import Base
 
 

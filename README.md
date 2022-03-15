@@ -71,4 +71,5 @@ Relationship among this tables are `continents` to `countries` is one to many an
 - app configurations can be define in environment
 - added celery_worker module to app with RabbitMQ for message broker and MySQL to store message in backend
 - converted continent api calls to celery task and a new route to get the task result
+- converted country api calls to celery task.
 - more will be added soon..

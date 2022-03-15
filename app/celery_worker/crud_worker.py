@@ -1,12 +1,11 @@
-from celery import Celery
-import celery
+from celery import Celery, Task
 from core import configurations as config
-from database.mysql import SQLALCHEMY_DATABASE_URL
+from database.mysql import SQLALCHEMY_DATABASE_URL, SessionLocal
 
 app = Celery('worker',
                     broker=f'amqp://{config.MB_USERNAME}:{config.MB_PASS}@{config.MB_HOSTNAME}//',
                     backend="database",
-                    include=["crud.continent"])
+                    include=["crud.continent", "crud.country"])
 
 
 
